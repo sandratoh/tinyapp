@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sandratoh/tinyapp/issues"
   },
-  "homepage": "https://github.com/sandratoh/tinyapp#readme"
+  "homepage": "https://github.com/sandratoh/tinyapp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
