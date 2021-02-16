@@ -62,5 +62,10 @@ app.get("/urls/:shortURL", (req, res) => {
 
 app.get('/u/:shortURL', (req, res) => {
   const longURL = urlDatabase[req.params.shortURL];
-  res.redirect(longURL);
+  if (!longURL) {
+    res.statusCode = 400;
+    res.send('404 Page Not Found');
+  } else {
+    res.redirect(longURL);
+  }
 });
