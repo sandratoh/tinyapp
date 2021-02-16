@@ -46,6 +46,7 @@ app.post('/urls', (req, res) => {
   // Log the POST request body to the console
   console.log(req.body);
   // Respond with randomly generated 6 character string
+  res.statusCode = 200;
   res.send(generateRandomString());
 });
 
