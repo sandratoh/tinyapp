@@ -37,6 +37,13 @@ app.get('/urls/new', (req, res) => {
   res.render('urls_new');
 });
 
+app.post('/urls', (req, res) => {
+  // Log the POST request body to the console
+  console.log(req.body);
+  // Respond with 'OK' (we will replace this)
+  res.send('OK');
+});
+
 app.get("/urls/:id", (req, res) => {
   const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL] };
   res.render("urls_show", templateVars);
