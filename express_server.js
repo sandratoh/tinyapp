@@ -42,15 +42,24 @@ app.get('/urls/new', (req, res) => {
   res.render('urls_new');
 });
 
-app.post('/urls', (req, res) => {
+app.post('/urls', (req, res, next) => {
   // Log the POST request body to the console
   console.log(req.body);
   // Respond with randomly generated 6 character string
   res.statusCode = 200;
-  res.send(generateRandomString());
+  let shortURL = generateRandomString();
+  urlDatabase[shortURL] = req.body.longURL;
+  // res.send(urlDatabase);
+
+  // app.get(`/urls/:${shortURL}`, (req, res) => {
+  //   const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL] };
+  //   res.render("urls_show", templateVars);
+  // });
+
+  res.redirect(`/urls/:${shortURL}`);
 });
 
-app.get("/urls/:id", (req, res) => {
+app.get("/urls/:shortURL", (req, res) => {
   const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL] };
   res.render("urls_show", templateVars);
 });
