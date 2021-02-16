@@ -17,6 +17,10 @@ const urlDatabase = {
   '9sm5xK': 'http://www.google.com'
 };
 
+const deleteURL = (urlObj, key) => {
+  delete urlObj[key];
+};
+
 app.get('/', (req, res) => {
   res.send('Hello!');
 });
