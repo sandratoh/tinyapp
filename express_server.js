@@ -56,7 +56,7 @@ app.post('/urls', (req, res, next) => {
   //   res.render("urls_show", templateVars);
   // });
 
-  res.redirect(`/urls/:${shortURL}`);
+  res.redirect(`/urls/${shortURL}`);
 });
 
 app.get("/urls/:shortURL", (req, res) => {
