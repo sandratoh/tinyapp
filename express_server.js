@@ -92,6 +92,5 @@ app.post('/urls/:shortURL/update', (req, res) => {
   console.log('Updated URL Database:', shortURL, newURL);
   updateURL(urlDatabase, shortURL, newURL);
 
-  // res.send('ok');
   res.redirect(`/urls/${shortURL}`);
 });
