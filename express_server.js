@@ -45,8 +45,8 @@ app.get('/urls/new', (req, res) => {
 app.post('/urls', (req, res) => {
   // Log the POST request body to the console
   console.log(req.body);
-  // Respond with 'OK' (we will replace this)
-  res.send('OK');
+  // Respond with randomly generated 6 character string
+  res.send(generateRandomString());
 });
 
 app.get("/urls/:id", (req, res) => {
