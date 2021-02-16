@@ -43,13 +43,11 @@ app.get('/urls/new', (req, res) => {
 });
 
 app.post('/urls', (req, res) => {
-  // Log the POST request body to the console
-  // console.log(req.body);
   // Respond with randomly generated 6 character string
   res.statusCode = 200;
   let shortURL = generateRandomString();
   urlDatabase[shortURL] = req.body.longURL;
-  // test codes to check urlDatabase
+  // Log the new URL Database to the console
   console.log('Current URL Database\n', urlDatabase);
 
   res.redirect(`/urls/${shortURL}`);
