@@ -74,8 +74,9 @@ app.get('/u/:shortURL', (req, res) => {
 
 // Delete a URL
 app.post('/urls/:shortURL/delete', (req, res) => {
-  const key = req.params.shortURL;
-  deleteURL(urlDatabase, key);
+  const shortURL = req.params.shortURL;
+  console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL]);
+  deleteURL(urlDatabase, shortURL);
 
   res.redirect('/urls');
 });
