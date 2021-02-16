@@ -42,7 +42,7 @@ app.get('/urls/new', (req, res) => {
   res.render('urls_new');
 });
 
-app.post('/urls', (req, res, next) => {
+app.post('/urls', (req, res) => {
   // Log the POST request body to the console
   // console.log(req.body);
   // Respond with randomly generated 6 character string
