@@ -44,12 +44,13 @@ app.get('/urls/new', (req, res) => {
 
 app.post('/urls', (req, res, next) => {
   // Log the POST request body to the console
-  console.log(req.body);
+  // console.log(req.body);
   // Respond with randomly generated 6 character string
   res.statusCode = 200;
   let shortURL = generateRandomString();
   urlDatabase[shortURL] = req.body.longURL;
-  // res.send(urlDatabase); // test codes to check urlDatabase
+  // test codes to check urlDatabase
+  console.log('Current URL Database\n', urlDatabase);
 
   res.redirect(`/urls/${shortURL}`);
 });
