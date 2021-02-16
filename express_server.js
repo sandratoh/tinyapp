@@ -49,12 +49,7 @@ app.post('/urls', (req, res, next) => {
   res.statusCode = 200;
   let shortURL = generateRandomString();
   urlDatabase[shortURL] = req.body.longURL;
-  // res.send(urlDatabase);
-
-  // app.get(`/urls/:${shortURL}`, (req, res) => {
-  //   const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL] };
-  //   res.render("urls_show", templateVars);
-  // });
+  // res.send(urlDatabase); // test codes to check urlDatabase
 
   res.redirect(`/urls/${shortURL}`);
 });
