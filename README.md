@@ -37,8 +37,8 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
     - [ ] a list (or table) of URLs the user has created, each list item containing:
       - [ ] a short URL
       - [ ] the short URL's matching long URL
-      - [ ] an edit button which makes a GET request to /urls/:id
-      - [ ] a delete button which makes a POST request to /urls/:id/delete
+      - [ ] an edit button which makes a GET request to `/urls/:id`
+      - [ ] a delete button which makes a POST request to `/urls/:id/delete`
       - [ ] (Stretch) the date the short URL was created
       - [ ] (Stretch) the number of times the short URL was visited
       - [ ] (Stretch) the number number of unique visits for the short URL
@@ -46,25 +46,24 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is not logged in:
     - [ ] returns HTML with a relevant error message
 
-- [ ] GET /urls/new
+- [ ] `GET /urls/new`
   * if user is logged in:
   * returns HTML with:
   - [ ] the site header (see Display Requirements above)
   - [ ] a form which contains:
     - [ ] a text input field for the original (long) URL
-    - [ ] a submit button which makes a POST request to /urls
+    - [ ] a submit button which makes a POST request to `/urls`
   * if user is not logged in:
-    - [ ] redirects to the /login page
+    - [ ] redirects to the `/login` page
 
-- [ ] GET /urls/:id
-
+- [ ] `GET /urls/:id`
   * if user is logged in and owns the URL for the given ID:
     - [ ] returns HTML with:
     - [ ] the site header (see Display Requirements above)
     - [ ] the short URL (for the given ID)
     - [ ] a form which contains:
       * the corresponding long URL
-      * an update button which makes a POST request to /urls/:id
+      * an update button which makes a POST request to `/urls/:id`
     - [ ] (Stretch) the date the short URL was created
     - [ ] (Stretch) the number of times the short URL was visited
     - [ ] (Stretch) the number of unique visits for the short URL
@@ -75,23 +74,23 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is logged it but does not own the URL with the given ID:
     - [ ] returns HTML with a relevant error message
 
-- [ ] GET /u/:id
+- [ ] `GET /u/:id`
   * if URL for the given ID exists:
     - [ ] redirects to the corresponding long URL
   * if URL for the given ID does not exist:
     - [ ] (Minor) returns HTML with a relevant error message
 
-- [ ] POST /urls
+- [ ] `POST /urls`
   * if user is logged in:
     - [ ] generates a short URL, saves it, and associates it with the user
-    - [ ] redirects to /urls/:id, where :id matches the ID of the newly saved URL
+    - [ ] redirects to `/urls/:id`, where :id matches the ID of the newly saved URL
   * if user is not logged in:
     - [ ] (Minor) returns HTML with a relevant error message
 
 - [ ] `POST /urls/:id`
   * if user is logged in and owns the URL for the given ID:
     - [ ] updates the URL
-    - [ ] redirects to /urls
+    - [ ] redirects to `/urls`
   * if user is not logged in:
     - [ ] (Minor) returns HTML with a relevant error message
   * if user is logged it but does not own the URL for the given ID:
