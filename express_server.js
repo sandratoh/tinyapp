@@ -146,10 +146,17 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  // generate new userID for user
+  const userID = generateRandomString();
+  const inputEmail = req.body.email;
+  const inputPassword = req.body.password;
+  
+  const newUser = {
+    id: userID,
+    email: inputEmail,
+    password: inputPassword
+  };
 
-  // add new user to user object
-
+  users[inputEmail] = newUser;
   // set user_id cookie after adding to obj
 
   // log new user obj to server
