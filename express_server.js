@@ -157,9 +157,7 @@ app.post('/register', (req, res) => {
   };
 
   users[userID] = newUser;
-  // set user_id cookie after adding to obj
-
-  // log new user obj to server
+  res.cookie('user_id', userID);
   console.log('Updated users database:', users);
 
   res.redirect('/urls');
