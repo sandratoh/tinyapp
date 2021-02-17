@@ -1,8 +1,8 @@
 const isEmptyInput = input => !input ? true : false;
 
-const emailExists = (obj, email) => {
+const emailExists = (obj, inputEmail) => {
   for (let user in obj) {
-    if (email === obj[user].email) {
+    if (obj[user][inputEmail]) {
       return true;
     }
   }
