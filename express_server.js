@@ -156,29 +156,24 @@ app.post('/register', (req, res) => {
     res.statusCode = 400;
     res.send('Please enter an email');
     console.log('Input email is empty');
-  }
 
-  if (isEmptyInput(inputPassword)) {
+  } else if (isEmptyInput(inputPassword)) {
     res.statusCode = 400;
     res.send('Please enter a password');
     console.log('Input password is empty');
+
+  } else {
+    const newUser = {
+      id: userID,
+      email: inputEmail,
+      password: inputPassword
+    };
+  
+    users[userID] = newUser;
+    res.cookie('user_id', userID);
+    console.log('Updated users database:', users);
+  
+    res.redirect('/urls');
   }
 
-  // if (!inputEmail || !inputPassword) {
-  //   res.statusCode = 400;
-  //   res.send('Please enter both fields');
-  //   console.log('Input email and/or password is empty.');
-  // }
-
-  const newUser = {
-    id: userID,
-    email: inputEmail,
-    password: inputPassword
-  };
-
-  users[userID] = newUser;
-  res.cookie('user_id', userID);
-  console.log('Updated users database:', users);
-
-  res.redirect('/urls');
 });
