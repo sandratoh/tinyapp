@@ -108,7 +108,7 @@ app.post('/urls/:shortURL/update', (req, res) => {
 });
 
 // Username login
-app.post('/urls/login', (req, res) => {
+app.post('/login', (req, res) => {
   const username = req.body.username;
   console.log('User signed in:', username);
   res.cookie('username', username);
