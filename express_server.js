@@ -47,6 +47,8 @@ const updateURL = (urlObj, key, newURL) => {
   return urlObj[key] = newURL;
 };
 
+const isEmptyInput = input => !input ? true : false;
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Hello!');
@@ -149,6 +151,24 @@ app.post('/register', (req, res) => {
   const userID = generateRandomString();
   const inputEmail = req.body.email;
   const inputPassword = req.body.password;
+
+  if (isEmptyInput(inputEmail)) {
+    res.statusCode = 400;
+    res.send('Please enter an email');
+    console.log('Input email is empty');
+  }
+
+  if (isEmptyInput(inputPassword)) {
+    res.statusCode = 400;
+    res.send('Please enter a password');
+    console.log('Input password is empty');
+  }
+
+  // if (!inputEmail || !inputPassword) {
+  //   res.statusCode = 400;
+  //   res.send('Please enter both fields');
+  //   console.log('Input email and/or password is empty.');
+  // }
 
   const newUser = {
     id: userID,
