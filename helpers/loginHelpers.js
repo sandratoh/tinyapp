@@ -9,4 +9,13 @@ const emailExists = (obj, email) => {
   return false;
 };
 
-module.exports = { isEmptyInput, emailExists };
+const dataMatches = (obj, dataType, input) => {
+  for (let user in obj) {
+    if (obj[user][dataType] === input) {
+      return true;
+    }
+  }
+  return false;
+};
+
+module.exports = { isEmptyInput, emailExists, dataMatches };
