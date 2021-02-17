@@ -140,7 +140,20 @@ app.post('/logout', (req, res) => {
   res.redirect('/urls');
 });
 
-// Registration form
+// User registration
 app.get('/register', (req, res) => {
   res.render('register');
+});
+
+app.post('/register', (req, res) => {
+  // generate new userID for user
+
+  // add new user to user object
+
+  // set user_id cookie after adding to obj
+
+  // log new user obj to server
+  console.log('Updated users database:', users);
+
+  res.redirect('/urls');
 });
