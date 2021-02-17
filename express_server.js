@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 
 // Helper functions
 const { deleteURL, updateURL } = require('./helpers/urlHelpers');
-const { isEmptyInput, emailExists } = require('./helpers/loginHelpers');
+const { isEmptyInput, emailExists, dataMatches } = require('./helpers/loginHelpers');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -128,14 +128,22 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
   const inputEmail = req.body.email;
   const inputPassword = req.body.password;
+
+  if (dataMatches(users, 'email', inputEmail)) {
+    console.log('email matches');
+  }
+
+  if (dataMatches(users, 'password', inputPassword)) {
+    console.log('password matches');
+  }
   
   // login if inputEmail matches the one from user database
 
   // error if wrong password or empty fields
 
   // set cookies to user_id once logged in
+  res.send('ok');
   
-  res.redirect('/urls');
 });
 
 // User logout
