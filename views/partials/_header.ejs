@@ -11,7 +11,11 @@
       </div>
     </div>
     <% if (username) { %>
-      <h5><%= username %></h5>
+      <form method="POST" action="/urls/logout">
+        <label for="username">Logged In As:</label>
+        <output><%= username %></output>
+        <button type="submit">Log Out</button>
+      </form>
       <% } else { %>
         <form method="POST" action="/urls/login">
           <input type="text" placeholder="Enter username" name="username">
