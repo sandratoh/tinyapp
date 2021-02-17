@@ -4,6 +4,9 @@ const PORT = 8080;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+// Helper functions
+const { deleteURL, updateURL } = require('./helpers/urlHelpers');
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
@@ -37,14 +40,6 @@ const users = {
 const generateRandomString = () => {
   let str = Math.random().toString(36).substring(7);
   return str;
-};
-
-const deleteURL = (urlObj, key) => {
-  delete urlObj[key];
-};
-
-const updateURL = (urlObj, key, newURL) => {
-  return urlObj[key] = newURL;
 };
 
 const isEmptyInput = input => !input ? true : false;
