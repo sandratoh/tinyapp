@@ -163,12 +163,17 @@ app.post('/register', (req, res) => {
 
   if (isEmptyInput(inputEmail)) {
     res.statusCode = 400;
-    res.send('Please enter an email');
+    // redirect back to register page, but add error message in ejs
+    res.redirect('/register');
+    // res.send('Please enter an email');
     console.log('Input email is empty');
 
   } else if (isEmptyInput(inputPassword)) {
     res.statusCode = 400;
-    res.send('Please enter a password');
+    // redirect back to register page, but add error message in ejs
+    // try and keep whatever email was input previously
+    res.redirect('/register');
+    // res.send('Please enter a password');
     console.log('Input password is empty');
 
   // if registrating with email that already exists
