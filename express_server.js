@@ -172,9 +172,10 @@ app.post('/register', (req, res) => {
     console.log('Input password is empty');
 
   // if registrating with email that already exists
-  } else if (inputEmail) {
-
-
+  } else if (emailExists(inputEmail)) {
+    // redirect back to register page, but add error message in ejs
+    res.redirect('/register');
+    console.log('Registration email already exists');
 
   } else {
     const newUser = {
