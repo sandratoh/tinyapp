@@ -96,3 +96,11 @@ app.post('/urls/:shortURL/update', (req, res) => {
 
   res.redirect(`/urls/${shortURL}`);
 });
+
+// Username login
+app.post('/urls/login', (req, res) => {
+  const username = req.body.username;
+  console.log('Username:', username);
+
+  res.send('ok');
+});
