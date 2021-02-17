@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 // Helper functions
 const { deleteURL, updateURL } = require('./helpers/urlHelpers');
+const { isEmptyInput, emailExists } = require('./helpers/loginHelpers');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -40,17 +41,6 @@ const users = {
 const generateRandomString = () => {
   let str = Math.random().toString(36).substring(7);
   return str;
-};
-
-const isEmptyInput = input => !input ? true : false;
-
-const emailExists = (obj, email) => {
-  for (let user in obj) {
-    if (email === obj[user].email) {
-      return true;
-    }
-  }
-  return false;
 };
 
 // Routes
