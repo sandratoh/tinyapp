@@ -21,15 +21,15 @@ const urlDatabase = {
 };
 
 const users = {
-  "userRandomID": {
-    id: "userRandomID",
-    email: "user@example.com",
-    password: "purple-monkey-dinosaur"
+  'userRandomID': {
+    id: 'userRandomID',
+    email: 'user@example.com',
+    password: 'purple-monkey-dinosaur'
   },
-  "user2RandomID": {
-    id: "user2RandomID",
-    email: "user2@example.com",
-    password: "dishwasher-funk"
+  'user2RandomID': {
+    id: 'user2RandomID',
+    email: 'user2@example.com',
+    password: 'dishwasher-funk'
   }
 };
 
@@ -149,14 +149,14 @@ app.post('/register', (req, res) => {
   const userID = generateRandomString();
   const inputEmail = req.body.email;
   const inputPassword = req.body.password;
-  
+
   const newUser = {
     id: userID,
     email: inputEmail,
     password: inputPassword
   };
 
-  users[inputEmail] = newUser;
+  users[userID] = newUser;
   // set user_id cookie after adding to obj
 
   // log new user obj to server
