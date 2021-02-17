@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 
 // Helper functions
 const { deleteURL, updateURL } = require('./helpers/urlHelpers');
-const { isEmptyInput, emailExists, dataMatches } = require('./helpers/loginHelpers');
+const { isEmptyInput, emailExists, dataMatches, findUserID } = require('./helpers/loginHelpers');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -133,6 +133,8 @@ app.post('/login', (req, res) => {
   const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
   // if email and pw both match
   if (emailMatch && passwordMatch) {
+    const userID = findUserID(users, inputEmail);
+    res.cookie('user_id', userID);
     res.redirect('/urls');
   }
 
@@ -188,7 +190,6 @@ app.post('/register', (req, res) => {
   // if registrating with email that already exists
   } else if (emailExists(users, inputEmail)) {
     // redirect back to register page, but add error message in ejs
-    // console.log(emailExists(inputEmail));
     res.redirect('/register');
     console.log('Registration email already exists');
 
