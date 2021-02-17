@@ -17,10 +17,16 @@
         <button type="submit">Log Out</button>
       </form>
       <% } else { %>
-        <form method="POST" action="/login">
-          <input type="text" placeholder="Enter username" name="username">
-          <button type="submit">Sign In</button>
-        </form>
+        <div>
+          <form method="POST" action="/register">
+            <button type="submit">Register</button>
+          </form>
+        </div>
+        <div>
+          <form method="POST" action="/login">
+            <button type="submit">Log In</button>
+          </form>
+        </div>
       <% } %>
   </nav>
 </header>
