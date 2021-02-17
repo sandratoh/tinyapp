@@ -49,6 +49,15 @@ const updateURL = (urlObj, key, newURL) => {
 
 const isEmptyInput = input => !input ? true : false;
 
+const emailExists = (obj, email) => {
+  for (let user in obj) {
+    if (email === obj[user].email) {
+      return true;
+    }
+  }
+  return false;
+};
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Hello!');
@@ -161,6 +170,11 @@ app.post('/register', (req, res) => {
     res.statusCode = 400;
     res.send('Please enter a password');
     console.log('Input password is empty');
+
+  // if registrating with email that already exists
+  } else if (inputEmail) {
+
+
 
   } else {
     const newUser = {
