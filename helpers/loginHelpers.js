@@ -18,4 +18,14 @@ const dataMatches = (obj, dataType, input) => {
   return false;
 };
 
-module.exports = { isEmptyInput, emailExists, dataMatches };
+const findUserID = (obj, inputEmail) => {
+  let userID;
+  for (let user in obj) {
+    if (obj[user].email === inputEmail) {
+      userID = obj[user].id;
+    }
+  }
+  return userID;
+};
+
+module.exports = { isEmptyInput, emailExists, dataMatches, findUserID };
