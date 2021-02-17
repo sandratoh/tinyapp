@@ -122,3 +122,8 @@ app.post('/logout', (req, res) => {
 
   res.redirect('/urls');
 });
+
+// Registration form
+app.get('/register', (req, res) => {
+  res.render('register');
+});
