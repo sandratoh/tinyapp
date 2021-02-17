@@ -129,20 +129,27 @@ app.post('/login', (req, res) => {
   const inputEmail = req.body.email;
   const inputPassword = req.body.password;
 
-  if (dataMatches(users, 'email', inputEmail)) {
-    console.log('email matches');
+  const emailMatch = dataMatches(users, 'email', inputEmail) ? true : false;
+  const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
+  // if email and pw both match
+  if (emailMatch && passwordMatch) {
+    res.redirect('/urls');
   }
 
-  if (dataMatches(users, 'password', inputPassword)) {
-    console.log('password matches');
-  }
+  // if (dataMatches(users, 'email', inputEmail)) {
+  //   console.log('email matches');
+  // }
+
+  // if (dataMatches(users, 'password', inputPassword)) {
+  //   console.log('password matches');
+  // }
   
   // login if inputEmail matches the one from user database
 
   // error if wrong password or empty fields
 
   // set cookies to user_id once logged in
-  res.send('ok');
+  // res.send('ok');
   
 });
 
@@ -179,8 +186,9 @@ app.post('/register', (req, res) => {
     console.log('Input password is empty');
 
   // if registrating with email that already exists
-  } else if (emailExists(inputEmail)) {
+  } else if (emailExists(users, inputEmail)) {
     // redirect back to register page, but add error message in ejs
+    // console.log(emailExists(inputEmail));
     res.redirect('/register');
     console.log('Registration email already exists');
 
