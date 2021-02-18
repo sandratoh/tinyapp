@@ -168,16 +168,6 @@ app.post('/login', (req, res) => {
     const userID = findUserID(users, inputEmail);
     const databasePassword = users[userID].password;
 
-    // bcrypt.compare(inputPassword, databasePassword)
-    //   .then((result) => {
-    //     console.log('User logged in:', users[userID].email);
-    //     res.cookie('user_id', userID);
-    //     res.redirect('/urls');
-    //   })
-    //   .catch((error) => {
-    //     res.status(403).send('nope');
-    //   });
-
     bcrypt.compare(inputPassword, databasePassword, (err, result) => {
       if (result) {
         console.log('User logged in:', users[userID].email);
