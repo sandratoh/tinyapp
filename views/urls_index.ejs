@@ -12,11 +12,16 @@
 <body>
   <main style="margin: 1em;">
    <% if (!user) { %>
-     <h1>Welcome to TinyApp!</h1>
-     <h5>We help you shorten your URLs!</h5>
-     <form method="GET" action="/login">
-      <button type="submit" class="btn btn-primary">Get Started!</button>
-    </form>
+    <div class="text-center">
+      <div style="margin-top:8em"></div>
+      <h1 >Welcome to TinyApp!</h1>
+      <div style="margin-top:2em"></div>
+      <h5 >We help you shorten your URLs!</h5>
+      <div style="margin-top:4em"></div>
+      <form method="GET" action="/login">
+       <button type="submit" class="btn btn-primary">Get Started!</button>
+     </form>
+    </div>
    <% } else { %>
      <h3>My URLs</h3>
      <table class="table">
