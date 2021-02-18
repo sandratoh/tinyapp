@@ -11,10 +11,6 @@ const { isEmptyInput, emailExists, dataMatches, findUserID } = require('./helper
 const { generateRandomString } = require('./helpers/generateRandomString');
 const { urlsForUser } = require('./helpers/permissionHelpers');
 
-bcrypt.hash('password', 10, (err, hash) => {
-  console.log(hash);
-});
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
@@ -224,17 +220,17 @@ app.post('/register', (req, res) => {
     console.log('Registration email already exists');
 
   } else {
-    const newUser = {
-      id: userID,
-      email: inputEmail,
-      password: inputPassword
-    };
-  
-    users[userID] = newUser;
-    res.cookie('user_id', userID);
-    console.log('Updated users database:', users);
-  
-    res.redirect('/urls');
+    bcrypt.hash(inputPassword, 10, (err, hash) => {
+      const newUser = {
+        id: userID,
+        email: inputEmail,
+        password: hash
+      };
+      users[userID] = newUser;
+      res.cookie('user_id', userID);
+      console.log('Updated users database:', users);
+    
+      res.redirect('/urls');
+    });
   }
-
 });
