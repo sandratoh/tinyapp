@@ -166,6 +166,7 @@ app.post('/login', (req, res) => {
     const inputPassword = req.body.password;
     const userID = findUserID(users, inputEmail);
     
+    // REMOVE CODES UP TO NEXT COMMENT IF NO MORE DEFAULT TEST USERS
     if (inputEmail === 'hello@example.com' || inputEmail === 'user@example.com') {
       const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
       if (passwordMatch) {
@@ -178,6 +179,7 @@ app.post('/login', (req, res) => {
       }
 
     } else {
+    // REMOVE UP TO HERE IF NO MORE DEFAULT TEST USERS (CLEAN UP THE BRACKETS TOO SORRY)
       const databasePassword = users[userID].password;
       bcrypt.compare(inputPassword, databasePassword, (err, result) => {
         if (result) {
