@@ -122,7 +122,8 @@ app.post('/urls/:shortURL/update', (req, res) => {
 
 // Username login
 app.get('/login', (req, res) => {
-  res.render('login');
+  const templateVars = { user: null };
+  res.render('login', templateVars);
 });
 
 app.post('/login', (req, res) => {
