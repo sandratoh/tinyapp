@@ -154,9 +154,6 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   const inputEmail = req.body.email;
-  const inputPassword = req.body.password;
-  const userID = findUserID(users, inputEmail);
-  
   const emailMatch = dataMatches(users, 'email', inputEmail) ? true : false;
   
   if (!emailMatch) {
@@ -164,8 +161,11 @@ app.post('/login', (req, res) => {
     res.statusCode = 403;
     console.log('Email does not match database');
     res.redirect('/login');
+    
   } else {
-
+    const inputPassword = req.body.password;
+    const userID = findUserID(users, inputEmail);
+    
     if (inputEmail === 'hello@example.com' || inputEmail === 'user@example.com') {
       const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
       if (passwordMatch) {
@@ -174,8 +174,9 @@ app.post('/login', (req, res) => {
         res.redirect('/urls');
       } else {
         console.log('Password does not match database');
-        res.status(403).send('password not matching');
+        res.status(403).redirect('/login');
       }
+
     } else {
       const databasePassword = users[userID].password;
       bcrypt.compare(inputPassword, databasePassword, (err, result) => {
@@ -185,14 +186,11 @@ app.post('/login', (req, res) => {
           res.redirect('/urls');
         } else {
           console.log('Password does not match database');
-          res.status(403).send('nope');
+          res.status(403).redirect('/login');
         }
       });
     }
-
-
   }
-  
 });
 
 // User logout
