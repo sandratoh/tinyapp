@@ -51,7 +51,7 @@ const users = {
 
 // Routes
 app.get('/', (req, res) => {
-  res.redirect('/urls');
+  req.session.cookieUserId ? res.redirect('/urls') : res.redirect('/login');
 });
 
 app.get('/urls.json', (req, res) => {
