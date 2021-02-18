@@ -60,10 +60,11 @@ app.get('/hello', (req, res) => {
 
 app.get('/urls', (req, res) => {
   // if user is logged in, display urls that match logged in user's userID
-
+  const userID = req.cookies['user_id'];
+  const userURLs = urlsForUser(urlDatabase, userID);
   const templateVars = {
-    urls: urlDatabase,
-    user: users[req.cookies['user_id']]
+    urls: userURLs,
+    user: users[userID]
   };
   res.render('urls_index', templateVars);
 });
