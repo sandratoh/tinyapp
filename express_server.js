@@ -51,7 +51,7 @@ const users = {
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Hello!');
+  res.redirect('/urls');
 });
 
 app.get('/urls.json', (req, res) => {
