@@ -11,19 +11,25 @@
 </head>
 <body>
   <main style="margin: 1em;">
-    <h3>Login to Account</h3>
-    <form action="/login" method="POST">
-      <div class="form-group">
-        <label for="inputEmail">Email Address</label>
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Enter email...">
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Enter password...">
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    Don't have an account? <a href="/register">Register for a free account today!</a>
+    <div class="text-center">
+      <div style="margin-top:8em"></div>
+      <h3>Login to Account</h3>
+      <div style="margin-top:2em"></div>
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="inputEmail">Email Address</label>
+          <input type="email" id="inputEmail" name="email" placeholder="Enter email...">
+        </div>
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input type="password" id="inputPassword" name="password" placeholder="Enter password...">
+        </div>
+        <div style="margin-top:4em"></div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <div style="margin-top:2em"></div>
+      Don't have an account? <a href="/register">Register for a free account today!</a>
+    </div>
   </main>
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
