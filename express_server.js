@@ -127,10 +127,13 @@ app.post('/urls/:shortURL/delete', (req, res) => {
 
 // Update a URL
 app.post('/urls/:shortURL/update', (req, res) => {
+  const currentUser = req.cookies['user_id'];
   const shortURL = req.params.shortURL;
-  const newURL = req.body.newURL;
-  console.log('Updated URL Database:', shortURL, newURL);
-  updateURL(urlDatabase, shortURL, newURL);
+  if (urlDatabase[shortURL].userID === currentUser) {
+    const newURL = req.body.newURL;
+    updateURL(urlDatabase, shortURL, newURL, currentUser);
+    console.log('Updated URL Database:', shortURL, urlDatabase[shortURL]);
+  }
 
   res.redirect(`/urls/${shortURL}`);
 });
