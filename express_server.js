@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const { deleteURL, updateURL } = require('./helpers/urlHelpers');
 const { isEmptyInput, emailExists, dataMatches, findUserID } = require('./helpers/loginHelpers');
 const { generateRandomString } = require('./helpers/generateRandomString');
+const { urlsForUser } = require('./helpers/permissionHelpers');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -58,6 +59,8 @@ app.get('/hello', (req, res) => {
 });
 
 app.get('/urls', (req, res) => {
+  // if user is logged in, display urls that match logged in user's userID
+
   const templateVars = {
     urls: urlDatabase,
     user: users[req.cookies['user_id']]
