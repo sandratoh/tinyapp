@@ -23,7 +23,8 @@
      </form>
     </div>
    <% } else { %>
-    <% if (urls.url === undefined) { %>
+    <!-- need to figure out how to find truthy value for empty urls lib, currently always return false -->
+    <% if (urls === undefined) { %>
       <div class="text-center">
         <div style="margin-top:8em"></div>
         <h1>Your URL Library is Currently Empty!</h1>
@@ -34,7 +35,6 @@
          <button type="submit" class="btn btn-primary">Create URL</button>
        </form>
       </div>
-
     <% } else { %>
       <h3>My URLs</h3>
       <table class="table">
@@ -67,8 +67,6 @@
       </table>
     <% } %>
   <% } %>
-
-
   </main>
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
