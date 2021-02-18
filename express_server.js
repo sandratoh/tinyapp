@@ -131,11 +131,12 @@ app.post('/urls/:shortURL/delete', (req, res) => {
 
 // Update a URL
 app.post('/urls/:shortURL/update', (req, res) => {
-  const currentUser = req.cookies['user_id'];
+  const user = req.cookies['user_id'];
   const shortURL = req.params.shortURL;
-  if (urlDatabase[shortURL].userID === currentUser) {
+  const urlOwner = urlDatabase[shortURL].userID;
+  if (urlOwner === user) {
     const newURL = req.body.newURL;
-    updateURL(urlDatabase, shortURL, newURL, currentUser);
+    updateURL(urlDatabase, shortURL, newURL, user);
     console.log('Updated URL Database:', shortURL, urlDatabase[shortURL]);
   }
 
