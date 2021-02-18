@@ -134,16 +134,19 @@ app.post('/login', (req, res) => {
   const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
 
   if (!emailMatch) {
+    // TO DO: display error message to user
     res.statusCode = 403;
     console.log('Email does not match database');
     res.redirect('/login');
 
   } else {
     if (!passwordMatch) {
+      // TO DO: display error message to user
+      // TO DO: if user has entered email field, keep input
       res.statusCode = 403;
       console.log('Password does not match database');
       res.redirect('/login');
-      
+
     } else {
       const userID = findUserID(users, inputEmail);
       res.cookie('user_id', userID);
@@ -173,22 +176,19 @@ app.post('/register', (req, res) => {
 
   if (isEmptyInput(inputEmail)) {
     res.statusCode = 400;
-    // redirect back to register page, but add error message in ejs
+    // TO DO: display error message to user
     res.redirect('/register');
-    // res.send('Please enter an email');
     console.log('Input email is empty');
 
   } else if (isEmptyInput(inputPassword)) {
     res.statusCode = 400;
-    // redirect back to register page, but add error message in ejs
-    // try and keep whatever email was input previously
+    // TO DO: display error message to user
+    // TO DO: if user had entered something in email, keep input when redirecting
     res.redirect('/register');
-    // res.send('Please enter a password');
     console.log('Input password is empty');
 
-  // if registrating with email that already exists
   } else if (emailExists(users, inputEmail)) {
-    // redirect back to register page, but add error message in ejs
+    // TO DO: display error message to user
     res.redirect('/register');
     console.log('Registration email already exists');
 
