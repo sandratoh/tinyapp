@@ -157,7 +157,11 @@ app.post('/login', (req, res) => {
   const inputPassword = req.body.password;
 
   const emailMatch = dataMatches(users, 'email', inputEmail) ? true : false;
-  const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
+  let passwordMatch = false;
+  
+  bcrypt.compare(inputPassword, 'hashedpwindatabase')
+    .then((result) => passwordMatch = true)
+    .catch(res.status(403).resend('nope'));
 
   if (!emailMatch) {
     // TO DO: display error message to user
