@@ -21,20 +21,26 @@ app.listen(PORT, () => {
 
 // Global objects
 const urlDatabase = {
-  'b2xVn2': 'http://www.lighthouselabs.ca',
-  '9sm5xK': 'http://www.google.com'
+  'b2xVn2': {
+    longURL: 'http://www.lighthouselabs.ca',
+    userID: 'boyjd4'
+  },
+  '9sm5xK': {
+    longURL: 'http://www.google.com',
+    userID: 'boyjd4'
+  }
 };
 
 const users = {
-  'userRandomID': {
-    id: 'userRandomID',
-    email: 'user@example.com',
-    password: 'purple-monkey-dinosaur'
+  'boyjd4': {
+    id: 'boyjd4',
+    email: 'hello@example.com',
+    password: 'tomato'
   },
-  'user2RandomID': {
-    id: 'user2RandomID',
-    email: 'user2@example.com',
-    password: 'dishwasher-funk'
+  's83kdi': {
+    id: 's83kdi',
+    email: 'user@example.com',
+    password: 'purple'
   }
 };
 
