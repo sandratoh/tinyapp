@@ -4,7 +4,6 @@ const PORT = 8080;
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
-// const cookieParser = require('cookie-parser');
 
 // Helper functions
 const { deleteURL, updateURL } = require('./helpers/urlHelpers');
@@ -17,7 +16,6 @@ app.use(cookieSession({
   name: 'session',
   keys: ['avocado', 'is green', 'so is broccoli']
 }));
-// app.use(cookieParser());
 
 // Server set up
 app.set('view engine', 'ejs');
