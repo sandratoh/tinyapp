@@ -82,7 +82,7 @@ app.get('/urls/new', (req, res) => {
 app.post('/urls', (req, res) => {
   let shortURL = generateRandomString();
   const userID = req.cookies['user_id'];
-  
+
   urlDatabase[shortURL] = {
     longURL: req.body.longURL,
     userID: userID
@@ -160,6 +160,7 @@ app.post('/login', (req, res) => {
 
     } else {
       const userID = findUserID(users, inputEmail);
+      console.log('User logged in:', users[userID].email);
       res.cookie('user_id', userID);
       res.redirect('/urls');
     }
