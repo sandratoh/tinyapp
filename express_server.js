@@ -37,12 +37,12 @@ const users = {
   'boyjd4': {
     id: 'boyjd4',
     email: 'hello@example.com',
-    password: 'tomato'
+    password: '$2a$10$7RmcG8AhcqTh58ZZcVoyguFyLVRrCnygkftpRPpXSOr8fHKv./nAe' // tomato
   },
   's83kdi': {
     id: 's83kdi',
     email: 'user@example.com',
-    password: 'purple'
+    password: '$2a$10$dFwdXm8kV8MXYcICVj0caup8W.FglJCeccbG/rLdOUod/98E023wm' // purple
   }
 };
 
@@ -165,11 +165,10 @@ app.post('/login', (req, res) => {
   } else {
     const inputPassword = req.body.password;
     const userID = findUserID(users, inputEmail);
-    
-    // REMOVE CODES UP TO NEXT COMMENT IF NO MORE DEFAULT TEST USERS
-    if (inputEmail === 'hello@example.com' || inputEmail === 'user@example.com') {
-      const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
-      if (passwordMatch) {
+    const databasePassword = users[userID].password;
+
+    bcrypt.compare(inputPassword, databasePassword, (err, result) => {
+      if (result) {
         console.log('User logged in:', users[userID].email);
         res.cookie('user_id', userID);
         res.redirect('/urls');
@@ -177,21 +176,7 @@ app.post('/login', (req, res) => {
         console.log('Password does not match database');
         res.status(403).redirect('/login');
       }
-
-    } else {
-    // REMOVE UP TO HERE IF NO MORE DEFAULT TEST USERS (CLEAN UP THE BRACKETS TOO SORRY)
-      const databasePassword = users[userID].password;
-      bcrypt.compare(inputPassword, databasePassword, (err, result) => {
-        if (result) {
-          console.log('User logged in:', users[userID].email);
-          res.cookie('user_id', userID);
-          res.redirect('/urls');
-        } else {
-          console.log('Password does not match database');
-          res.status(403).redirect('/login');
-        }
-      });
-    }
+    });
   }
 });
 
