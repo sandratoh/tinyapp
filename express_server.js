@@ -136,14 +136,14 @@ app.post('/login', (req, res) => {
   if (!emailMatch) {
     res.statusCode = 403;
     console.log('Email does not match database');
-    res.send('Please check your email');
+    res.redirect('/login');
 
   } else {
     if (!passwordMatch) {
       res.statusCode = 403;
       console.log('Password does not match database');
-      res.send('Please check your password');
-
+      res.redirect('/login');
+      
     } else {
       const userID = findUserID(users, inputEmail);
       res.cookie('user_id', userID);
