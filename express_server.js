@@ -157,11 +157,6 @@ app.post('/login', (req, res) => {
   const inputPassword = req.body.password;
 
   const emailMatch = dataMatches(users, 'email', inputEmail) ? true : false;
-  let passwordMatch = false;
-  
-  bcrypt.compare(inputPassword, 'hashedpwindatabase')
-    .then((result) => passwordMatch = true)
-    .catch(res.status(403).resend('nope'));
 
   if (!emailMatch) {
     // TO DO: display error message to user
@@ -170,20 +165,28 @@ app.post('/login', (req, res) => {
     res.redirect('/login');
 
   } else {
-    if (!passwordMatch) {
-      // TO DO: display error message to user
-      // TO DO: if user has entered email field, keep input
-      res.statusCode = 403;
-      console.log('Password does not match database');
-      res.redirect('/login');
+    const userID = findUserID(users, inputEmail);
+    const databasePassword = users[userID].password;
 
-    } else {
-      const userID = findUserID(users, inputEmail);
-      console.log('User logged in:', users[userID].email);
-      res.cookie('user_id', userID);
-      res.redirect('/urls');
-    }
+    // bcrypt.compare(inputPassword, databasePassword)
+    //   .then((result) => {
+    //     console.log('User logged in:', users[userID].email);
+    //     res.cookie('user_id', userID);
+    //     res.redirect('/urls');
+    //   })
+    //   .catch((error) => {
+    //     res.status(403).send('nope');
+    //   });
 
+    bcrypt.compare(inputPassword, databasePassword, (err, result) => {
+      if (result) {
+        console.log('User logged in:', users[userID].email);
+        res.cookie('user_id', userID);
+        res.redirect('/urls');
+      } else {
+        res.status(403).send('nope');
+      }
+    });
   }
 });
 
