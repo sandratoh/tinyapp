@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 // Helper functions
 const { deleteURL, updateURL } = require('./helpers/urlHelpers');
 const { isEmptyInput, emailExists, dataMatches, findUserID } = require('./helpers/loginHelpers');
+const { generateRandomString } = require('./helpers/generateRandomString');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -35,12 +36,6 @@ const users = {
     email: 'user2@example.com',
     password: 'dishwasher-funk'
   }
-};
-
-// Global helper functions
-const generateRandomString = () => {
-  let str = Math.random().toString(36).substring(7);
-  return str;
 };
 
 // Routes
