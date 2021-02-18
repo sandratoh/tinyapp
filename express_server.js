@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session');
 
 // Helper functions
 const { deleteURL, updateURL } = require('./helpers/urlHelpers');
-const { isEmptyInput, emailExists, dataMatches, findUserID } = require('./helpers/loginHelpers');
+const { isEmptyInput, emailExists, dataMatches, findUserIdByEmail } = require('./helpers/loginHelpers');
 const { generateRandomString } = require('./helpers/generateRandomString');
 const { urlsForUser } = require('./helpers/permissionHelpers');
 
@@ -167,7 +167,7 @@ app.post('/login', (req, res) => {
     
   } else {
     const inputPassword = req.body.password;
-    const userID = findUserID(users, inputEmail);
+    const userID = findUserIdByEmail(users, inputEmail);
     const databasePassword = users[userID].password;
 
     bcrypt.compare(inputPassword, databasePassword, (err, result) => {
