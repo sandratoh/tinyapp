@@ -118,9 +118,13 @@ app.get('/u/:shortURL', (req, res) => {
 
 // Delete a URL
 app.post('/urls/:shortURL/delete', (req, res) => {
+  const user = req.cookies['user_id'];
   const shortURL = req.params.shortURL;
-  console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL]);
-  deleteURL(urlDatabase, shortURL);
+  const urlOwner = urlDatabase[shortURL].userID;
+  if (urlOwner === user) {
+    deleteURL(urlDatabase, shortURL);
+    console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL]);
+  }
 
   res.redirect('/urls');
 });
