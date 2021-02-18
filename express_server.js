@@ -155,29 +155,44 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
   const inputEmail = req.body.email;
   const inputPassword = req.body.password;
-
+  const userID = findUserID(users, inputEmail);
+  
   const emailMatch = dataMatches(users, 'email', inputEmail) ? true : false;
-
+  
   if (!emailMatch) {
     // TO DO: display error message to user
     res.statusCode = 403;
     console.log('Email does not match database');
     res.redirect('/login');
-
   } else {
-    const userID = findUserID(users, inputEmail);
-    const databasePassword = users[userID].password;
 
-    bcrypt.compare(inputPassword, databasePassword, (err, result) => {
-      if (result) {
+    if (inputEmail === 'hello@example.com' || inputEmail === 'user@example.com') {
+      const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
+      if (passwordMatch) {
         console.log('User logged in:', users[userID].email);
         res.cookie('user_id', userID);
         res.redirect('/urls');
       } else {
-        res.status(403).send('nope');
+        console.log('Password does not match database');
+        res.status(403).send('password not matching');
       }
-    });
+    } else {
+      const databasePassword = users[userID].password;
+      bcrypt.compare(inputPassword, databasePassword, (err, result) => {
+        if (result) {
+          console.log('User logged in:', users[userID].email);
+          res.cookie('user_id', userID);
+          res.redirect('/urls');
+        } else {
+          console.log('Password does not match database');
+          res.status(403).send('nope');
+        }
+      });
+    }
+
+
   }
+  
 });
 
 // User logout
