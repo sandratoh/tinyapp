@@ -124,8 +124,8 @@ app.post('/urls/:shortURL/delete', (req, res) => {
   if (!user || urlOwner !== user) {
     res.statusCode = 403;
   } else {
+    console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL].longURL);
     deleteURL(urlDatabase, shortURL);
-    console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL]);
   }
   res.redirect('/urls');
 });
