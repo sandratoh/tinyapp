@@ -6,6 +6,4 @@ const generateRandomString = () => {
   return str;
 };
 
-console.log(generateRandomString());
-
 module.exports = { generateRandomString };
