@@ -132,22 +132,24 @@ app.post('/login', (req, res) => {
   const emailMatch = dataMatches(users, 'email', inputEmail) ? true : false;
   const passwordMatch = dataMatches(users, 'password', inputPassword) ? true : false;
 
-  // if email doesn't match database
   if (!emailMatch) {
     res.statusCode = 403;
     console.log('Email does not match database');
     res.send('Please check your email');
 
-  } else if (emailMatch && passwordMatch) {
-    const userID = findUserID(users, inputEmail);
-    res.cookie('user_id', userID);
-    res.redirect('/urls');
+  } else {
+    if (!passwordMatch) {
+      res.statusCode = 403;
+      console.log('Password does not match database');
+      res.send('Please check your password');
+
+    } else {
+      const userID = findUserID(users, inputEmail);
+      res.cookie('user_id', userID);
+      res.redirect('/urls');
+    }
+
   }
-
-  // error if wrong password or empty fields
-
-  // res.send('ok');
-  
 });
 
 // User logout
