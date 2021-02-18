@@ -135,12 +135,13 @@ app.post('/urls/:shortURL/update', (req, res) => {
   const user = req.cookies['user_id'];
   const shortURL = req.params.shortURL;
   const urlOwner = urlDatabase[shortURL].userID;
-  if (urlOwner === user) {
+  if (!user || urlOwner !== user) {
+    res.statusCode = 403;
+  } else {
     const newURL = req.body.newURL;
     updateURL(urlDatabase, shortURL, newURL, user);
     console.log('Updated URL Database:', shortURL, urlDatabase[shortURL]);
   }
-
   res.redirect(`/urls/${shortURL}`);
 });
 
