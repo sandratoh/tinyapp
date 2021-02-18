@@ -162,7 +162,8 @@ app.post('/logout', (req, res) => {
 
 // User registration
 app.get('/register', (req, res) => {
-  res.render('register');
+  const templateVars = { user: null };
+  res.render('register', templateVars);
 });
 
 app.post('/register', (req, res) => {
