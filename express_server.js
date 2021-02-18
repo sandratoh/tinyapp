@@ -58,10 +58,6 @@ app.get('/urls.json', (req, res) => {
   res.json(urlDatabase);
 });
 
-app.get('/hello', (req, res) => {
-  res.send('<html><body>Helo <b>World</b></body></html>\n');
-});
-
 app.get('/urls', (req, res) => {
   // if user is logged in, display urls that match logged in user's userID
   const userID = req.session.cookieUserId;
