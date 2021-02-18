@@ -64,7 +64,7 @@ app.get('/hello', (req, res) => {
 
 app.get('/urls', (req, res) => {
   // if user is logged in, display urls that match logged in user's userID
-  const userID = req.session.user_id;
+  const userID = req.session.cookieUserId;
   const userURLs = urlsForUser(urlDatabase, userID);
   const templateVars = {
     urls: userURLs,
@@ -75,7 +75,7 @@ app.get('/urls', (req, res) => {
 
 app.get('/urls/new', (req, res) => {
   // if not logged in, redirect to login
-  const userID = req.session.user_id;
+  const userID = req.session.cookieUserId;
   if (!userID) {
     res.redirect('/login');
   } else {
@@ -89,7 +89,7 @@ app.get('/urls/new', (req, res) => {
 
 app.post('/urls', (req, res) => {
   let shortURL = generateRandomString();
-  const userID = req.session.user_id;
+  const userID = req.session.cookieUserId;
 
   urlDatabase[shortURL] = {
     longURL: req.body.longURL,
@@ -105,7 +105,7 @@ app.get("/urls/:shortURL", (req, res) => {
   const templateVars = {
     shortURL: req.params.shortURL,
     longURL: urlDatabase[req.params.shortURL].longURL,
-    user: users[req.session.user_id]
+    user: users[req.session.cookieUserId]
   };
   res.render("urls_show", templateVars);
 });
@@ -122,7 +122,7 @@ app.get('/u/:shortURL', (req, res) => {
 
 // Delete a URL
 app.post('/urls/:shortURL/delete', (req, res) => {
-  const user = req.session.user_id;
+  const user = req.session.cookieUserId;
   const shortURL = req.params.shortURL;
   const urlOwner = urlDatabase[shortURL].userID;
   if (!user || urlOwner !== user) {
@@ -136,7 +136,7 @@ app.post('/urls/:shortURL/delete', (req, res) => {
 
 // Update a URL
 app.post('/urls/:shortURL/update', (req, res) => {
-  const user = req.session.user_id;
+  const user = req.session.cookieUserId;
   const shortURL = req.params.shortURL;
   const urlOwner = urlDatabase[shortURL].userID;
   if (!user || urlOwner !== user) {
@@ -173,7 +173,7 @@ app.post('/login', (req, res) => {
     bcrypt.compare(inputPassword, databasePassword, (err, result) => {
       if (result) {
         console.log('User logged in:', users[userID].email);
-        req.session.user_id = (userID);
+        req.session.cookieUserId = (userID);
         res.redirect('/urls');
       } else {
         console.log('Password does not match database');
@@ -227,7 +227,7 @@ app.post('/register', (req, res) => {
         password: hash
       };
       users[userID] = newUser;
-      req.session.user_id = (userID);
+      req.session.cookieUserId = (userID);
       console.log('Updated users database:', users);
     
       res.redirect('/urls');
