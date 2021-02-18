@@ -11,10 +11,8 @@ const { isEmptyInput, emailExists, dataMatches, findUserID } = require('./helper
 const { generateRandomString } = require('./helpers/generateRandomString');
 const { urlsForUser } = require('./helpers/permissionHelpers');
 
-bcrypt.genSalt(10, (err, salt) => {
-  bcrypt.hash('password', salt, (err, hash) => {
-    console.log(hash);
-  });
+bcrypt.hash('password', 10, (err, hash) => {
+  console.log(hash);
 });
 
 app.use(bodyParser.urlencoded({extended: true}));
