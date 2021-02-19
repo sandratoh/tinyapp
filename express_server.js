@@ -42,12 +42,12 @@ const users = {
   'boyjd4': {
     id: 'boyjd4',
     email: 'hello@example.com',
-    password: '$2a$10$7RmcG8AhcqTh58ZZcVoyguFyLVRrCnygkftpRPpXSOr8fHKv./nAe' // tomato
+    password: '$2a$10$7RmcG8AhcqTh58ZZcVoyguFyLVRrCnygkftpRPpXSOr8fHKv./nAe'
   },
   's83kdi': {
     id: 's83kdi',
     email: 'user@example.com',
-    password: '$2a$10$dFwdXm8kV8MXYcICVj0caup8W.FglJCeccbG/rLdOUod/98E023wm' // purple
+    password: '$2a$10$dFwdXm8kV8MXYcICVj0caup8W.FglJCeccbG/rLdOUod/98E023wm'
   }
 };
 
