@@ -71,7 +71,7 @@ app.get('/urls/new', (req, res) => {
   const userID = req.session.cookieUserId;
   if (!userID) {
     res.redirect('/login');
-    
+
   } else {
     const templateVars = {
       user: users[userID]
@@ -81,7 +81,7 @@ app.get('/urls/new', (req, res) => {
 });
 
 app.post('/urls', (req, res) => {
-  let shortURL = generateRandomString();
+  const shortURL = generateRandomString();
   const userID = req.session.cookieUserId;
 
   urlDatabase[shortURL] = {
