@@ -92,7 +92,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
     - [ ] updates the URL
     - [ ] redirects to `/urls`
   * if user is not logged in:
-    - [ ] (Minor) returns HTML with a relevant error message
+    - [x] (Minor) returns HTML with a relevant error message
   * if user is logged it but does not own the URL for the given ID:
     - [ ] (Minor) returns HTML with a relevant error message
 
@@ -114,9 +114,9 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
       - [x] input fields for email and password
       - [x] submit button that makes a POST request to `/login`
 
-- [ ] `GET /register`
+- [x] `GET /register`
   * if user is logged in:
-    - [ ] (Minor) redirects to `/urls`
+    - [x] (Minor) redirects to `/urls`
   * if user is not logged in:
     * returns HTML with:
     - [x] a form which contains:
