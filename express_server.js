@@ -101,7 +101,7 @@ app.get("/urls/:shortURL", (req, res) => {
   const inputShortURL = req.params.shortURL;
 
   if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
-    res.status(404).send('404 Error: Invalid URL');
+    res.status(404).send('404 Error: Invalid URL ID Entered');
 
   } else {
     const templateVars = {
@@ -116,7 +116,7 @@ app.get("/urls/:shortURL", (req, res) => {
 app.get('/u/:shortURL', (req, res) => {
   const inputShortURL = req.params.shortURL;
   if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
-    res.status(404).send('404 Error: Invalid URL');
+    res.status(404).send('404 Error: Invalid URL ID Entered');
   
   } else {
     const longURL = urlDatabase[inputShortURL].longURL;
