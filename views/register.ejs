@@ -11,20 +11,20 @@
 </head>
 <body>
   <main style="margin: 1em;">
-    <div class="text-center">
-      <div style="margin-top:8em"></div>
-      <h3>Create an Account</h3>
-      <div style="margin-top:2em"></div>
-      <form action="/register" method="POST">
-        <div class="form-group">
-          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-          <input type="email" id="inputEmail" name="email" placeholder="Enter email...">
-        </div>
-        <div class="form-group">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-          <input type="password" id="inputPassword" name="password" placeholder="Enter password...">
-        </div>
-        <div style="margin-top:4em"></div>
+    <div style="margin-top:8em"></div>
+    <h3 class="text-center">Create an Account</h3>
+    <div style="margin-top:2em"></div>
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Enter email...">
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Enter password...">
+      </div>
+      <div style="margin-top:4em"></div>
+      <div class="text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <div style="margin-top:2em"></div>
