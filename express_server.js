@@ -104,19 +104,22 @@ app.get("/urls/:shortURL", (req, res) => {
     res.status(404).send('404 Error: Invalid URL ID Entered');
 
   } else {
-    // // how to compare cookie to make sure it's the correct URL owner?
-    // const user = [req.session.cookieUserId];
-    // if (user !== urlDatabase[inputShortURL].userID) {
-    //   res.send('Error');
-    // } else {
+    const user = req.session.cookieUserId;
+    
+    if (user !== urlDatabase[inputShortURL].userID) {
+      const templateVars = {
+        shortURL: inputShortURL,
+        longURL: urlDatabase[inputShortURL].longURL,
+        user: null,
+      };
+      res.render("urls_show", templateVars);
+    }
     const templateVars = {
       shortURL: inputShortURL,
       longURL: urlDatabase[inputShortURL].longURL,
       user: users[req.session.cookieUserId],
     };
     res.render("urls_show", templateVars);
-
-    // }
   }
 });
 
