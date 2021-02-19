@@ -9,7 +9,7 @@ const cookieSession = require('cookie-session');
 // Helper functions
 const { deleteURL, updateURL, validDatabaseShortURL } = require('./helpers/urlHelpers');
 const { isEmptyInput, emailExists, dataMatches, findUserIdByEmail } = require('./helpers/loginHelpers');
-const { generateRandomString } = require('./helpers/generateRandomString');
+const { generateRandomString } = require('./helpers/generateHelpers');
 const { urlsForUser } = require('./helpers/permissionHelpers');
 
 // Middleware Use
