@@ -56,7 +56,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is not logged in:
     - [x] redirects to the `/login` page
 
-- [x] `GET /urls/:id`
+- [ ] `GET /urls/:id`
   * if user is logged in and owns the URL for the given ID:
     * returns HTML with:
     - [x] the site header (see Display Requirements above)
@@ -89,8 +89,8 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
 
 - [ ] `POST /urls/:id`
   * if user is logged in and owns the URL for the given ID:
-    - [ ] updates the URL
-    - [ ] redirects to `/urls`
+    - [x] updates the URL
+    - [x] redirects to `/urls`
   * if user is not logged in:
     - [x] (Minor) returns HTML with a relevant error message
   * if user is logged it but does not own the URL for the given ID:
@@ -101,7 +101,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
     - [x] deletes the URL
     - [x] redirects to `/urls`
   * if user is not logged in:
-    - [ ] (Minor) returns HTML with a relevant error message
+    - [x] (Minor) returns HTML with a relevant error message
   * if user is logged it but does not own the URL for the given ID:
     - [ ] (Minor) returns HTML with a relevant error message
 
