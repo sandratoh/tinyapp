@@ -139,27 +139,23 @@ app.get('/u/:shortURL', (req, res) => {
 
 // Delete a URL
 app.post('/urls/:shortURL/delete', (req, res) => {
-  const inputShortURL = req.params.shortURL;
+  const shortURL = req.params.shortURL;
 
-  if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
+  if (!validDatabaseShortURL(urlDatabase, shortURL)) {
     res.status(404).send('404 Error: Invalid URL ID Entered');
   
-  
-  const user = req.session.cookieUserId;
-  const shortURL = req.params.shortURL;
-  const urlOwner = urlDatabase[shortURL].userID;
-  
-  // if (!user || urlOwner !== user) {
-  //   res.statusCode = 403;
-  // }
-
-  if (!user) {
-    res.status(403).send('403 Error: Only URL owner can remove URLs.');
   } else {
-    console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL].longURL);
-    deleteURL(urlDatabase, shortURL);
+    const user = req.session.cookieUserId;
+    const urlOwner = urlDatabase[shortURL].userID;
+
+    if (user !== urlOwner) {
+      res.status(403).send('403 Error: Only URL owner can remove URLs.');
+    } else {
+      console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL].longURL);
+      deleteURL(urlDatabase, shortURL);
+      res.redirect('/urls');
+    }
   }
-  res.redirect('/urls');
 });
 
 // Update a URL
