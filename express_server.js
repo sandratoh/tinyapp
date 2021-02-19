@@ -52,12 +52,15 @@ const users = {
 };
 
 // Routes
+
+// Home and URLs Library
 app.get('/', (req, res) => {
   req.session.cookieUserId ? res.redirect('/urls') : res.redirect('/login');
 });
 
 app.get('/urls', (req, res) => {
-  // Not shown here: if user is not logged in (no cookieUserId found), html file will show welcome page
+  // Not shown here:
+  // if user is not logged in (no cookieUserId found), then HTML file will show Welcome page instead
   const userID = req.session.cookieUserId;
   const userURLs = urlsForUser(urlDatabase, userID);
   const templateVars = {
@@ -67,6 +70,7 @@ app.get('/urls', (req, res) => {
   res.render('urls_index', templateVars);
 });
 
+// Create new short URL
 app.get('/urls/new', (req, res) => {
   const userID = req.session.cookieUserId;
   if (!userID) {
@@ -88,12 +92,12 @@ app.post('/urls', (req, res) => {
     longURL: req.body.longURL,
     userID: userID
   };
-  // Log the new URL Database to the console
   console.log('Current URL Database\n', urlDatabase);
 
   res.redirect(`/urls/${shortURL}`);
 });
 
+// Accessing URLs in Library
 app.get("/urls/:shortURL", (req, res) => {
   const inputShortURL = req.params.shortURL;
 
@@ -120,14 +124,17 @@ app.get("/urls/:shortURL", (req, res) => {
 
 app.get('/u/:shortURL', (req, res) => {
   const inputShortURL = req.params.shortURL;
+
   if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
     res.status(404).send('404 Error: Invalid URL ID Entered');
   
   } else {
     const longURL = urlDatabase[inputShortURL].longURL;
+
     if (!longURL) {
       res.statusCode = 400;
       res.send('404 Error: URL Not Found');
+
     } else {
       res.redirect(longURL);
     }
@@ -147,6 +154,7 @@ app.post('/urls/:shortURL/delete', (req, res) => {
 
     if (user !== urlOwner) {
       res.status(403).send('403 Error: Only URL owner can remove URLs.');
+
     } else {
       console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL].longURL);
       deleteURL(urlDatabase, shortURL);
@@ -160,8 +168,10 @@ app.post('/urls/:shortURL', (req, res) => {
   const user = req.session.cookieUserId;
   const shortURL = req.params.shortURL;
   const urlOwner = urlDatabase[shortURL].userID;
+
   if (!user || urlOwner !== user) {
     res.status(403).send('403 Error: Only URL owners can edit');
+
   } else {
     const newURL = req.body.newURL;
     updateURL(urlDatabase, shortURL, newURL, user);
@@ -194,6 +204,7 @@ app.post('/login', (req, res) => {
         console.log('User logged in:', users[userID].email);
         req.session.cookieUserId = (userID);
         res.redirect('/urls');
+
       } else {
         console.log('Password does not match database');
         res.status(403).send('The email or password you entered is incorrect.');
@@ -205,7 +216,6 @@ app.post('/login', (req, res) => {
 // User logout
 app.post('/logout', (req, res) => {
   req.session = null;
-
   res.redirect('/urls');
 });
 
