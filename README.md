@@ -56,7 +56,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is not logged in:
     - [x] redirects to the `/login` page
 
-- [ ] `GET /urls/:id`
+- [x] `GET /urls/:id`
   * if user is logged in and owns the URL for the given ID:
     * returns HTML with:
     - [x] the site header (see Display Requirements above)
@@ -68,24 +68,24 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
     - [ ] (Stretch) the number of times the short URL was visited
     - [ ] (Stretch) the number of unique visits for the short URL
   * if a URL for the given ID does not exist:
-    - [ ] (Minor) returns HTML with a relevant error message
+    - [x] (Minor) returns HTML with a relevant error message
   * if user is not logged in:
-    - [ ] returns HTML with a relevant error message
+    - [x] returns HTML with a relevant error message
   * if user is logged it but does not own the URL with the given ID:
-    - [ ] returns HTML with a relevant error message
+    - [] returns HTML with a relevant error message
 
-- [ ] `GET /u/:id`
+- [x] `GET /u/:id`
   * if URL for the given ID exists:
     - [x] redirects to the corresponding long URL
   * if URL for the given ID does not exist:
-    - [ ] (Minor) returns HTML with a relevant error message
+    - [x] (Minor) returns HTML with a relevant error message
 
-- [ ] `POST /urls`
+- [x] `POST /urls`
   * if user is logged in:
-    - [ ] generates a short URL, saves it, and associates it with the user
-    - [ ] redirects to `/urls/:id`, where :id matches the ID of the newly saved URL
+    - [x] generates a short URL, saves it, and associates it with the user
+    - [x] redirects to `/urls/:id`, where :id matches the ID of the newly saved URL
   * if user is not logged in:
-    - [ ] (Minor) returns HTML with a relevant error message
+    - [x] (Minor) returns HTML with a relevant error message
 
 - [ ] `POST /urls/:id`
   * if user is logged in and owns the URL for the given ID:
@@ -98,38 +98,38 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
 
 - [ ] `POST /urls/:id/delete`
   * if user is logged in and owns the URL for the given ID:
-    - [ ] deletes the URL
-    - [ ] redirects to `/urls`
+    - [x] deletes the URL
+    - [x] redirects to `/urls`
   * if user is not logged in:
     - [ ] (Minor) returns HTML with a relevant error message
   * if user is logged it but does not own the URL for the given ID:
     - [ ] (Minor) returns HTML with a relevant error message
 
-- [ ] `GET /login`
+- [x] `GET /login`
   * if user is logged in:
-    - [ ] (Minor) redirects to `/urls`
+    - [x] (Minor) redirects to `/urls`
   * if user is not logged in:
     * returns HTML with:
-    - [ ] a form which contains:
-      - [ ] input fields for email and password
-      - [ ] submit button that makes a POST request to `/login`
+    - [x] a form which contains:
+      - [x] input fields for email and password
+      - [x] submit button that makes a POST request to `/login`
 
 - [ ] `GET /register`
   * if user is logged in:
     - [ ] (Minor) redirects to `/urls`
   * if user is not logged in:
-    - [ ] returns HTML with:
-    - [ ] a form which contains:
-    - [ ] input fields for email and password
-    - [ ] a register button that makes a POST request to `/register`
+    * returns HTML with:
+    - [x] a form which contains:
+    - [x] input fields for email and password
+    - [x] a register button that makes a POST request to `/register`
 
 - [ ] `POST /login`
 
   * if email and password params match an existing user:
-    - [ ] sets a cookie
-    - [ ] redirects to `/urls`
+    - [x] sets a cookie
+    - [x] redirects to `/urls`
   * if email and password params don't match an existing  user:
-    - [ ] returns HTML with a relevant error message
+    - [] returns HTML with a relevant error message
 
 - [ ] `POST /register`
   * if email or password are empty:
@@ -137,10 +137,10 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if email already exists:
     - [ ] returns HTML with a relevant error message
   * otherwise:
-    - [ ] creates a new user
-    - [ ] encrypts the new user's password with bcrypt
-    - [ ] sets a cookie
-    - [ ] redirects to `/urls`
+    - [x] creates a new user
+    - [x] encrypts the new user's password with bcrypt
+    - [x] sets a cookie
+    - [x] redirects to `/urls`
 
 - [x] `POST /logout`
   - [x] deletes cookie
