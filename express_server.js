@@ -176,10 +176,8 @@ app.post('/login', (req, res) => {
   const emailMatch = dataMatches(users, 'email', inputEmail) ? true : false;
   
   if (!emailMatch) {
-    // TO DO: display error message to user
-    res.statusCode = 403;
     console.log('Email does not match database');
-    res.redirect('/login');
+    res.status(403).send('The email or password you entered is incorrect.');
     
   } else {
     const inputPassword = req.body.password;
@@ -193,7 +191,7 @@ app.post('/login', (req, res) => {
         res.redirect('/urls');
       } else {
         console.log('Password does not match database');
-        res.status(403).redirect('/login');
+        res.status(403).send('The email or password you entered is incorrect.');
       }
     });
   }
