@@ -14,54 +14,54 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
 ## Display Requirements
 * Site Header:
 
-  * If a user is logged in, the header shows:
+  - [x] If a user is logged in, the header shows:
     * the user's email
     * a logout button which makes a POST request to `/logout`
   
-  * If a user is not logged in, the header shows:
+  - [x] If a user is not logged in, the header shows:
     * a link to the login page (`/login`)
     * a link to the registration page (`/register`)
 
 ## Behaviour Requirement
 
-- [ ] `GET /`
+- [x] `GET /`
   * if user is logged in:
-    - [ ] (Minor) redirect to `/urls`
+    - [x] (Minor) redirect to `/urls`
   * if user is not logged in:
-    - [ ] (Minor) redirect to `/login`
+    - [x] (Minor) redirect to `/login`
 
-- [ ] `GET /urls`
+- [x] `GET /urls`
   * if user is logged in:
     * returns HTML with:
-    - [ ] the site header (see Display Requirements above)
-    - [ ] a list (or table) of URLs the user has created, each list item containing:
-      - [ ] a short URL
-      - [ ] the short URL's matching long URL
-      - [ ] an edit button which makes a GET request to `/urls/:id`
-      - [ ] a delete button which makes a POST request to `/urls/:id/delete`
+    - [x] the site header (see Display Requirements above)
+    - [x] a list (or table) of URLs the user has created, each list item containing:
+      - [x] a short URL
+      - [x] the short URL's matching long URL
+      - [x] an edit button which makes a GET request to `/urls/:id`
+      - [x] a delete button which makes a POST request to `/urls/:id/delete`
       - [ ] (Stretch) the date the short URL was created
       - [ ] (Stretch) the number of times the short URL was visited
       - [ ] (Stretch) the number number of unique visits for the short URL
-    - [ ] (Minor) a link to "Create a New Short Link" which makes a GET request to /urls/new
+    - [x] (Minor) a link to "Create a New Short Link" which makes a GET request to /urls/new
   * if user is not logged in:
-    - [ ] returns HTML with a relevant error message
+    - [x] returns HTML with a relevant error message
 
-- [ ] `GET /urls/new`
+- [x] `GET /urls/new`
   * if user is logged in:
   * returns HTML with:
-  - [ ] the site header (see Display Requirements above)
-  - [ ] a form which contains:
-    - [ ] a text input field for the original (long) URL
-    - [ ] a submit button which makes a POST request to `/urls`
+  - [x] the site header (see Display Requirements above)
+  - [x] a form which contains:
+    - [x] a text input field for the original (long) URL
+    - [x] a submit button which makes a POST request to `/urls`
   * if user is not logged in:
-    - [ ] redirects to the `/login` page
+    - [x] redirects to the `/login` page
 
 - [ ] `GET /urls/:id`
   * if user is logged in and owns the URL for the given ID:
-    - [ ] returns HTML with:
-    - [ ] the site header (see Display Requirements above)
-    - [ ] the short URL (for the given ID)
-    - [ ] a form which contains:
+    * returns HTML with:
+    - [x] the site header (see Display Requirements above)
+    - [x] the short URL (for the given ID)
+    - [x] a form which contains:
       * the corresponding long URL
       * an update button which makes a POST request to `/urls/:id`
     - [ ] (Stretch) the date the short URL was created
@@ -76,7 +76,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
 
 - [ ] `GET /u/:id`
   * if URL for the given ID exists:
-    - [ ] redirects to the corresponding long URL
+    - [x] redirects to the corresponding long URL
   * if URL for the given ID does not exist:
     - [ ] (Minor) returns HTML with a relevant error message
 
