@@ -141,8 +141,13 @@ app.post('/urls/:shortURL/delete', (req, res) => {
   const user = req.session.cookieUserId;
   const shortURL = req.params.shortURL;
   const urlOwner = urlDatabase[shortURL].userID;
-  if (!user || urlOwner !== user) {
-    res.statusCode = 403;
+  
+  // if (!user || urlOwner !== user) {
+  //   res.statusCode = 403;
+  // }
+  
+  if (!user) {
+    res.status(403).send('403 Error: Only URL owner can remove URLs.');
   } else {
     console.log('Removed from URL Database:', shortURL, urlDatabase[shortURL].longURL);
     deleteURL(urlDatabase, shortURL);
