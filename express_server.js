@@ -139,6 +139,12 @@ app.get('/u/:shortURL', (req, res) => {
 
 // Delete a URL
 app.post('/urls/:shortURL/delete', (req, res) => {
+  const inputShortURL = req.params.shortURL;
+
+  if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
+    res.status(404).send('404 Error: Invalid URL ID Entered');
+  
+  
   const user = req.session.cookieUserId;
   const shortURL = req.params.shortURL;
   const urlOwner = urlDatabase[shortURL].userID;
