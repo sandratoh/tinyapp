@@ -208,6 +208,9 @@ app.post('/logout', (req, res) => {
 
 // User registration
 app.get('/register', (req, res) => {
+  if (req.session.cookieUserId) {
+    res.redirect('/urls');
+  }
   const templateVars = { user: null };
   res.render('register', templateVars);
 });
