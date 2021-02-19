@@ -101,7 +101,7 @@ app.get("/urls/:shortURL", (req, res) => {
   const inputShortURL = req.params.shortURL;
 
   if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
-    res.status(404).send('404 Error: URL Not Found');
+    res.status(404).send('404 Error: Invalid URL');
 
   } else {
     const templateVars = {
@@ -114,12 +114,18 @@ app.get("/urls/:shortURL", (req, res) => {
 });
 
 app.get('/u/:shortURL', (req, res) => {
-  const longURL = urlDatabase[req.params.shortURL].longURL;
-  if (!longURL) {
-    res.statusCode = 400;
-    res.send('404 Page Not Found');
+  const inputShortURL = req.params.shortURL;
+  if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
+    res.status(404).send('404 Error: Invalid URL');
+  
   } else {
-    res.redirect(longURL);
+    const longURL = urlDatabase[inputShortURL].longURL;
+    if (!longURL) {
+      res.statusCode = 400;
+      res.send('404 Error: URL Not Found');
+    } else {
+      res.redirect(longURL);
+    }
   }
 });
 
