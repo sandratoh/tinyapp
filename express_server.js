@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/urls', (req, res) => {
-  // if user is logged in, display urls that match logged in user's userID
+  // Not shown here: if user is not logged in (no cookieUserId found), html file will show welcome page
   const userID = req.session.cookieUserId;
   const userURLs = urlsForUser(urlDatabase, userID);
   const templateVars = {
@@ -68,17 +68,16 @@ app.get('/urls', (req, res) => {
 });
 
 app.get('/urls/new', (req, res) => {
-  // if not logged in, redirect to login
   const userID = req.session.cookieUserId;
   if (!userID) {
     res.redirect('/login');
+    
   } else {
     const templateVars = {
       user: users[userID]
     };
     res.render('urls_new', templateVars);
   }
-
 });
 
 app.post('/urls', (req, res) => {
