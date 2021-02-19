@@ -130,8 +130,7 @@ app.get('/u/:shortURL', (req, res) => {
     const longURL = urlDatabase[inputShortURL].longURL;
 
     if (!longURL) {
-      res.statusCode = 400;
-      res.send('404 Error: URL Not Found');
+      res.status(404).send('404 Error: URL Not Found');
 
     } else {
       res.redirect(longURL);
