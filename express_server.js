@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
 
 // Helper functions
-const { deleteURL, updateURL } = require('./helpers/urlHelpers');
+const { deleteURL, updateURL, validDatabaseShortURL } = require('./helpers/urlHelpers');
 const { isEmptyInput, emailExists, dataMatches, findUserIdByEmail } = require('./helpers/loginHelpers');
 const { generateRandomString } = require('./helpers/generateRandomString');
 const { urlsForUser } = require('./helpers/permissionHelpers');
@@ -100,20 +100,17 @@ app.post('/urls', (req, res) => {
 app.get("/urls/:shortURL", (req, res) => {
   const inputShortURL = req.params.shortURL;
 
-  const databaseShortURL = Object.keys(urlDatabase);
-  
-  const validShortURL = databaseShortURL.includes(inputShortURL) ? true : false;
-
-  if (!validShortURL) {
+  if (!validDatabaseShortURL(urlDatabase, inputShortURL)) {
     res.status(404).send('404 Error: URL Not Found');
-  }
 
-  const templateVars = {
-    shortURL: inputShortURL,
-    longURL: urlDatabase[inputShortURL].longURL,
-    user: users[req.session.cookieUserId]
-  };
-  res.render("urls_show", templateVars);
+  } else {
+    const templateVars = {
+      shortURL: inputShortURL,
+      longURL: urlDatabase[inputShortURL].longURL,
+      user: users[req.session.cookieUserId]
+    };
+    res.render("urls_show", templateVars);
+  }
 });
 
 app.get('/u/:shortURL', (req, res) => {
