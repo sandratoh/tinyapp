@@ -19,7 +19,7 @@
       <h5>We help you shorten your URLs!</h5>
       <div style="margin-top:4em"></div>
       <form method="GET" action="/login">
-       <button type="submit" class="btn btn-primary">Get Started!</button>
+       <button type="submit" class="btn btn-info">Get Started!</button>
      </form>
     </div>
    <% } else { %>
@@ -31,7 +31,7 @@
         <h5>And it will remain empty until you go shorten some URLs!</h5>
         <div style="margin-top:4em"></div>
         <form method="GET" action="/urls/new">
-         <button type="submit" class="btn btn-primary">Create URL</button>
+         <button type="submit" class="btn btn-info">Create URL</button>
        </form>
       </div>
     <% } else { %>
@@ -52,7 +52,7 @@
               <td><a href="<%= urls[url] %>"><%= urls[url] %></a></td>
               <td>
                 <form method="GET" action="/urls/<%= url %>">
-                  <button type="submit" button type="button" class="btn btn-outline-primary">Edit</button>
+                  <button type="submit" button type="button" class="btn btn-outline-info">Edit</button>
                 </form>
               </td>
               <td>
