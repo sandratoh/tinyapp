@@ -72,7 +72,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is not logged in:
     - [x] returns HTML with a relevant error message
   * if user is logged it but does not own the URL with the given ID:
-    - [] returns HTML with a relevant error message
+    - [ ] returns HTML with a relevant error message
 
 - [x] `GET /u/:id`
   * if URL for the given ID exists:
@@ -123,19 +123,19 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
     - [x] input fields for email and password
     - [x] a register button that makes a POST request to `/register`
 
-- [ ] `POST /login`
+- [x] `POST /login`
 
   * if email and password params match an existing user:
     - [x] sets a cookie
     - [x] redirects to `/urls`
   * if email and password params don't match an existing  user:
-    - [] returns HTML with a relevant error message
+    - [x] returns HTML with a relevant error message
 
-- [ ] `POST /register`
+- [x] `POST /register`
   * if email or password are empty:
-    - [ ] returns HTML with a relevant error message
+    - [x] returns HTML with a relevant error message
   * if email already exists:
-    - [ ] returns HTML with a relevant error message
+    - [x] returns HTML with a relevant error message
   * otherwise:
     - [x] creates a new user
     - [x] encrypts the new user's password with bcrypt
