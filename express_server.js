@@ -171,8 +171,8 @@ app.post('/urls/:shortURL', (req, res) => {
     const newURL = req.body.newURL;
     updateURL(urlDatabase, shortURL, newURL, user);
     console.log('Updated URL Database:', shortURL, urlDatabase[shortURL]);
+    res.redirect('/urls');
   }
-  res.redirect('/urls');
 });
 
 // Username login
