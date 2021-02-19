@@ -9,4 +9,9 @@ const updateURL = (urlObj, key, newURL, user) => {
   };
 };
 
-module.exports = { deleteURL, updateURL };
+const validDatabaseShortURL = (databaseObj, shortURL) => {
+  const databaseKeys = Object.keys(databaseObj);
+  databaseKeys.includes(shortURL) ? true : false;
+};
+
+module.exports = { deleteURL, updateURL, validDatabaseShortURL };
