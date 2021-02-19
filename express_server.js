@@ -77,9 +77,7 @@ app.get('/urls/new', (req, res) => {
     res.redirect('/login');
 
   } else {
-    const templateVars = {
-      user: users[userID]
-    };
+    const templateVars = { user: users[userID] };
     res.render('urls_new', templateVars);
   }
 });
