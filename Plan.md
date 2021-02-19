@@ -8,7 +8,7 @@ Delete  => Remove a resource     => `DELETE`
 ## End Points
 
 * Update URL: 
-  * `post '/urls/:shortURL/update'`
+  * `post '/urls/:shortURL'`
   * redirects back to `'/urls/:shortURL'`
 * Delete URL:
   * `post '/urls:shortURL/delete'` 
