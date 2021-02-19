@@ -98,9 +98,19 @@ app.post('/urls', (req, res) => {
 });
 
 app.get("/urls/:shortURL", (req, res) => {
+  const inputShortURL = req.params.shortURL;
+
+  const databaseShortURL = Object.keys(urlDatabase);
+  
+  const validShortURL = databaseShortURL.includes(inputShortURL) ? true : false;
+
+  if (!validShortURL) {
+    res.status(404).send('404 Error: URL Not Found');
+  }
+
   const templateVars = {
-    shortURL: req.params.shortURL,
-    longURL: urlDatabase[req.params.shortURL].longURL,
+    shortURL: inputShortURL,
+    longURL: urlDatabase[inputShortURL].longURL,
     user: users[req.session.cookieUserId]
   };
   res.render("urls_show", templateVars);
