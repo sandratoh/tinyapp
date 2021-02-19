@@ -56,7 +56,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is not logged in:
     - [x] redirects to the `/login` page
 
-- [ ] `GET /urls/:id`
+- [x] `GET /urls/:id`
   * if user is logged in and owns the URL for the given ID:
     * returns HTML with:
     - [x] the site header (see Display Requirements above)
@@ -72,7 +72,7 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is not logged in:
     - [x] returns HTML with a relevant error message
   * if user is logged it but does not own the URL with the given ID:
-    - [ ] returns HTML with a relevant error message
+    - [x] returns HTML with a relevant error message
 
 - [x] `GET /u/:id`
   * if URL for the given ID exists:
@@ -87,23 +87,23 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
   * if user is not logged in:
     - [x] (Minor) returns HTML with a relevant error message
 
-- [ ] `POST /urls/:id`
+- [x] `POST /urls/:id`
   * if user is logged in and owns the URL for the given ID:
     - [x] updates the URL
     - [x] redirects to `/urls`
   * if user is not logged in:
     - [x] (Minor) returns HTML with a relevant error message
   * if user is logged it but does not own the URL for the given ID:
-    - [ ] (Minor) returns HTML with a relevant error message
+    - [x] (Minor) returns HTML with a relevant error message
 
-- [ ] `POST /urls/:id/delete`
+- [x] `POST /urls/:id/delete`
   * if user is logged in and owns the URL for the given ID:
     - [x] deletes the URL
     - [x] redirects to `/urls`
   * if user is not logged in:
     - [x] (Minor) returns HTML with a relevant error message
   * if user is logged it but does not own the URL for the given ID:
-    - [ ] (Minor) returns HTML with a relevant error message
+    - [x] (Minor) returns HTML with a relevant error message
 
 - [x] `GET /login`
   * if user is logged in:
@@ -145,5 +145,3 @@ This is a simple web app that will allow users to shorten long URLS to a randomi
 - [x] `POST /logout`
   - [x] deletes cookie
   - [x] redirects to `/urls`
-
-
