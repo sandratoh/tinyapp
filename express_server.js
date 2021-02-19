@@ -222,20 +222,16 @@ app.post('/register', (req, res) => {
 
   if (isEmptyInput(inputEmail)) {
     res.statusCode = 400;
-    // TO DO: display error message to user
-    res.redirect('/register');
+    res.send('Please enter an email');
     console.log('Input email is empty');
 
   } else if (isEmptyInput(inputPassword)) {
     res.statusCode = 400;
-    // TO DO: display error message to user
-    // TO DO: if user had entered something in email, keep input when redirecting
-    res.redirect('/register');
+    res.send('Please enter a password');
     console.log('Input password is empty');
 
   } else if (emailExists(users, inputEmail)) {
-    // TO DO: display error message to user
-    res.redirect('/register');
+    res.send('Email already exists');
     console.log('Registration email already exists');
 
   } else {
