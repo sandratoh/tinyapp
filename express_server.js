@@ -1,3 +1,4 @@
+// Library and Middleware Dependencies
 const express = require('express');
 const app = express();
 const PORT = 8080;
@@ -11,6 +12,7 @@ const { isEmptyInput, emailExists, dataMatches, findUserIdByEmail } = require('.
 const { generateRandomString } = require('./helpers/generateRandomString');
 const { urlsForUser } = require('./helpers/permissionHelpers');
 
+// Middleware Use
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieSession({
   name: 'session',
@@ -52,10 +54,6 @@ const users = {
 // Routes
 app.get('/', (req, res) => {
   req.session.cookieUserId ? res.redirect('/urls') : res.redirect('/login');
-});
-
-app.get('/urls.json', (req, res) => {
-  res.json(urlDatabase);
 });
 
 app.get('/urls', (req, res) => {
