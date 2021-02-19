@@ -167,7 +167,7 @@ app.post('/urls/:shortURL', (req, res) => {
   const urlOwner = urlDatabase[shortURL].userID;
 
   if (!user || urlOwner !== user) {
-    res.status(403).send('403 Error: Only URL owners can edit');
+    res.status(403).send('403 Error: Only URL owners can edit their URLs.');
 
   } else {
     const newURL = req.body.newURL;
