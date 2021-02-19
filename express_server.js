@@ -105,21 +105,19 @@ app.get("/urls/:shortURL", (req, res) => {
 
   } else {
     const user = req.session.cookieUserId;
-    
-    if (user !== urlDatabase[inputShortURL].userID) {
-      const templateVars = {
-        shortURL: inputShortURL,
-        longURL: urlDatabase[inputShortURL].longURL,
-        user: null,
-      };
-      res.render("urls_show", templateVars);
-    }
-    const templateVars = {
+    let templateVars = {
       shortURL: inputShortURL,
       longURL: urlDatabase[inputShortURL].longURL,
-      user: users[req.session.cookieUserId],
+      user: users[user],
+      urlOwner: false
     };
-    res.render("urls_show", templateVars);
+
+    if (user === urlDatabase[inputShortURL].userID) {
+      templateVars.urlOwner = true;
+      res.render("urls_show", templateVars);
+    } else {
+      res.render("urls_show", templateVars);
+    }
   }
 });
 
