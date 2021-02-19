@@ -159,7 +159,7 @@ app.post('/urls/:shortURL/delete', (req, res) => {
 });
 
 // Update a URL
-app.post('/urls/:shortURL/update', (req, res) => {
+app.post('/urls/:shortURL', (req, res) => {
   const user = req.session.cookieUserId;
   const shortURL = req.params.shortURL;
   const urlOwner = urlDatabase[shortURL].userID;
