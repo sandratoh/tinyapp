@@ -221,17 +221,15 @@ app.post('/register', (req, res) => {
   const inputPassword = req.body.password;
 
   if (isEmptyInput(inputEmail)) {
-    res.statusCode = 400;
-    res.send('Please enter an email');
+    res.status(400).send('Please enter an email');
     console.log('Input email is empty');
 
   } else if (isEmptyInput(inputPassword)) {
-    res.statusCode = 400;
-    res.send('Please enter a password');
+    res.status(400).send('Please enter a password');
     console.log('Input password is empty');
 
   } else if (emailExists(users, inputEmail)) {
-    res.send('Email already exists');
+    res.status(400).send('Email already exists');
     console.log('Registration email already exists');
 
   } else {
