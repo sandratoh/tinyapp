@@ -115,10 +115,8 @@ app.get("/urls/:shortURL", (req, res) => {
 
     if (user === urlDatabase[inputShortURL].userID) {
       templateVars.urlOwner = true;
-      res.render("urls_show", templateVars);
-    } else {
-      res.render("urls_show", templateVars);
     }
+    res.render("urls_show", templateVars);
   }
 });
 
